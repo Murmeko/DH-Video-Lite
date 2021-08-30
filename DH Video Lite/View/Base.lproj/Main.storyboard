@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9mX-jQ-myA">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,31 +24,29 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="DH Video Lite" id="Imj-IA-QAO"/>
                     <connections>
-                        <segue destination="gmF-MD-pU9" kind="show" id="2Ck-TK-NvP"/>
+                        <outlet property="videosTableView" destination="8IQ-iu-7eb" id="fmK-Zl-0SY"/>
+                        <segue destination="kHG-VE-HR9" kind="show" id="cIQ-jT-I8V"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V8C-dL-MZ1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="506" y="124"/>
         </scene>
-        <!--Video Details Table View Controller-->
-        <scene sceneID="v0B-gc-p4J">
+        <!--View Controller-->
+        <scene sceneID="BkU-se-A2B">
             <objects>
-                <tableViewController id="gmF-MD-pU9" customClass="VideoDetailsTableViewController" customModule="DH_Video_Lite" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="yeo-GY-G4s">
+                <viewController id="kHG-VE-HR9" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QDv-O0-n8d">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="VK9-ZS-vs2"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <connections>
-                            <outlet property="dataSource" destination="gmF-MD-pU9" id="d32-Jx-wOH"/>
-                            <outlet property="delegate" destination="gmF-MD-pU9" id="FJp-A6-vbT"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="YPy-1w-X7w"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="udt-5y-mLL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="MY0-I0-Phw"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rv4-Fd-B6n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1393" y="124"/>
+            <point key="canvasLocation" x="1388" y="124"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zKc-Jc-eYL">

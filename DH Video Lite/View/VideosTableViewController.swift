@@ -8,75 +8,59 @@
 import UIKit
 
 class VideosTableViewController: UITableViewController {
-
+    
+    @IBOutlet var videosTableView: UITableView!
+    
+    var videosViewModel = VideosViewModel.init()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        setupViewModel()
+        configureTableView()
+    }
+    
+    func setupViewModel(){
+        videosViewModel.reloadTableView = {
+            DispatchQueue.main.async { self.videosTableView.reloadData() }
+        }
+    }
+    
+    func configureTableView() {
+        self.videosTableView.register(UINib(nibName: K.videosTableViewCellNibName, bundle: nil), forCellReuseIdentifier: K.videosTableViewCellIdentifier)
+        self.videosTableView.dataSource = self
+        self.videosTableView.delegate = self
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return videosViewModel.numberOfVideos()
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return view.frame.width/4
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = videosTableView.dequeueReusableCell(withIdentifier: K.videosTableViewCellIdentifier, for: indexPath) as! VideosTableViewCell
+        cell.layer.cornerRadius = 3
+        let videoViewModel = videosViewModel.getVideoViewModel(indexPath)
+        cell.videosImageView.image = videoViewModel.image
+        cell.videosTitleLabel.text = videoViewModel.title
+        cell.videosTitleLabel.textColor = UIColor(hex: "\(videoViewModel.titleTextColor)ff")
+        cell.videosDurationLabel.backgroundColor = UIColor(hex: "\(videoViewModel.titleBackgroundColor)ff")
+        cell.backgroundColor = UIColor(hex: "\(videoViewModel.titleBackgroundColor)ff")
+        print(videoViewModel.titleBackgroundColor)
+        cell.videosDurationLabel.text = videoViewModel.duration
         return cell
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -84,6 +68,32 @@ class VideosTableViewController: UITableViewController {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }
-    */
+}
 
+extension UIColor {
+    public convenience init?(hex: String) {
+        let r, g, b, a: CGFloat
+
+        if hex.hasPrefix("#") {
+            let start = hex.index(hex.startIndex, offsetBy: 1)
+            let hexColor = String(hex[start...])
+
+            if hexColor.count == 8 {
+                let scanner = Scanner(string: hexColor)
+                var hexNumber: UInt64 = 0
+
+                if scanner.scanHexInt64(&hexNumber) {
+                    r = CGFloat((hexNumber & 0xff000000) >> 24) / 255
+                    g = CGFloat((hexNumber & 0x00ff0000) >> 16) / 255
+                    b = CGFloat((hexNumber & 0x0000ff00) >> 8) / 255
+                    a = CGFloat(hexNumber & 0x000000ff) / 255
+
+                    self.init(red: r, green: g, blue: b, alpha: a)
+                    return
+                }
+            }
+        }
+
+        return nil
+    }
 }
