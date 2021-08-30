@@ -8,9 +8,9 @@
 import Foundation
 
 struct K {
-    static let videosTableViewCellIdentifier = "ReuseableVideosTableViewCell"
+    static let videosCollectionViewCellIdentifier = "ReuseableVideosCollectionViewCell"
     static let videoDetailsTableViewCellIdentifier = "ReuseableVideoDetailsTableViewCell"
     
-    static let videosTableViewCellNibName = "VideosTableViewCell"
+    static let videosCollectionViewCellNibName = "VideosCollectionViewCell"
     static let videoDetailsCellNibName = "VideoDetailsTableViewCell"
 }
