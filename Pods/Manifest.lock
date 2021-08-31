@@ -5,7 +5,7 @@ PODS:
     - Moya/Core (= 14.0.0)
   - Moya/Core (14.0.0):
     - Alamofire (~> 5.0)
-  - MurkyVideoPlayer (0.1.0)
+  - MurkyVideoPlayer (0.2.0)
 
 DEPENDENCIES:
   - Kingfisher (~> 6.0)
@@ -24,15 +24,15 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   MurkyVideoPlayer:
-    :commit: 2ecbad24cce706f194a3673018fd434b8fe55c52
+    :commit: 24335e109818ce445573ea1068dd9910ce50f92f
     :git: https://github.com/Murmeko/MurkyVideoPlayer.git
 
 SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
   Kingfisher: 016c8b653a35add51dd34a3aba36b580041acc74
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
-  MurkyVideoPlayer: 0a6511e47343e8e37b770170a38c0aa209c1098b
+  MurkyVideoPlayer: 0ca307f61a86621e9d230eebb48a6493d3a6439e
 
-PODFILE CHECKSUM: 019afcb7f11bed71841d33850217455528265d7a
+PODFILE CHECKSUM: d954d3572441ad3056c268836d4ab44c0f158329
 
 COCOAPODS: 1.10.2

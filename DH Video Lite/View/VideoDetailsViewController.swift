@@ -40,6 +40,10 @@ class VideoDetailsViewController: UIViewController {
         navigationController?.navigationBar.tintColor = dhColor
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        videoPlayer?.player?.pause()
+    }
+    
     func updateFrame() {
         videoDetailsView.frame = view.frame
     }

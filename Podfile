@@ -12,5 +12,4 @@ pod 'Kingfisher', '~> 6.0'
 pod 'MurkyVideoPlayer',
 :git => 'https://github.com/Murmeko/MurkyVideoPlayer.git'
 
-
 end
