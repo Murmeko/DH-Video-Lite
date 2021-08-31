@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9mX-jQ-myA">
-    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -14,7 +14,7 @@
             <objects>
                 <collectionViewController id="cth-ng-xpd" customClass="VideosCollectionViewController" customModule="DH_Video_Lite" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="DqR-dP-Z6M">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="URU-Ue-Xr1">
@@ -32,34 +32,61 @@
                     <navigationItem key="navigationItem" id="1VA-1h-qwE"/>
                     <connections>
                         <outlet property="videosCollectionView" destination="DqR-dP-Z6M" id="bad-yn-K1J"/>
+                        <segue destination="kHG-VE-HR9" kind="show" identifier="videosToVideoDetails" id="6zW-cM-VkE"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uNF-Qc-X1S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="512" y="124"/>
         </scene>
-        <!--View Controller-->
+        <!--Video Details View Controller-->
         <scene sceneID="BkU-se-A2B">
             <objects>
-                <viewController id="kHG-VE-HR9" sceneMemberID="viewController">
+                <viewController id="kHG-VE-HR9" customClass="VideoDetailsViewController" customModule="DH_Video_Lite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QDv-O0-n8d">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1mU-r5-d3P">
+                                <rect key="frame" x="0.0" y="44" width="375" height="200"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="7QG-9s-Tkz"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gEw-79-onP">
+                                <rect key="frame" x="0.0" y="244" width="375" height="423"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="VK9-ZS-vs2"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="gEw-79-onP" firstAttribute="leading" secondItem="VK9-ZS-vs2" secondAttribute="leading" id="IYK-79-NS9"/>
+                            <constraint firstAttribute="trailing" secondItem="1mU-r5-d3P" secondAttribute="trailing" id="KMd-7W-mcU"/>
+                            <constraint firstItem="1mU-r5-d3P" firstAttribute="top" secondItem="VK9-ZS-vs2" secondAttribute="top" id="Mwk-49-izR"/>
+                            <constraint firstItem="gEw-79-onP" firstAttribute="top" secondItem="1mU-r5-d3P" secondAttribute="bottom" id="Pcu-Bk-kCa"/>
+                            <constraint firstItem="VK9-ZS-vs2" firstAttribute="bottom" secondItem="gEw-79-onP" secondAttribute="bottom" id="axg-sb-vvl"/>
+                            <constraint firstItem="1mU-r5-d3P" firstAttribute="leading" secondItem="VK9-ZS-vs2" secondAttribute="leading" id="mZh-GU-2Wl"/>
+                            <constraint firstItem="VK9-ZS-vs2" firstAttribute="trailing" secondItem="gEw-79-onP" secondAttribute="trailing" id="yMe-Fr-Sd8"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="MY0-I0-Phw"/>
+                    <connections>
+                        <outlet property="videoDetailsPlayerView" destination="1mU-r5-d3P" id="gzA-C0-TEh"/>
+                        <outlet property="videoDetailsTableView" destination="gEw-79-onP" id="Lk8-Tt-JjS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rv4-Fd-B6n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1388" y="124"/>
+            <point key="canvasLocation" x="1387.6923076923076" y="123.69668246445497"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zKc-Jc-eYL">
             <objects>
                 <navigationController id="9mX-jQ-myA" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="f1a-Zz-hYn">
-                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>

@@ -14,6 +14,7 @@ class VideosCollectionViewController: UICollectionViewController {
     @IBOutlet var videosCollectionView: UICollectionView!
     
     var videosViewModel = VideosViewModel.init()
+    var selectedVideoDetailsViewModel: VideoDetailsViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +25,7 @@ class VideosCollectionViewController: UICollectionViewController {
     }
     
     func setupViewModel(){
-        videosViewModel.reloadTableView = {
+        videosViewModel.reloadData = {
             DispatchQueue.main.async { self.videosCollectionView.reloadData() }
         }
     }
@@ -46,8 +47,8 @@ class VideosCollectionViewController: UICollectionViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+        let videoDetailsViewController = segue.destination as! VideoDetailsViewController
+        videoDetailsViewController.videoDetailsViewModel = selectedVideoDetailsViewModel
     }
 
     // MARK: UICollectionViewDataSource
@@ -77,11 +78,13 @@ class VideosCollectionViewController: UICollectionViewController {
 
     // MARK: UICollectionViewDelegate
 
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedVideoDetailsViewModel = videosViewModel.getVideoViewModel(indexPath)
+        performSegue(withIdentifier: K.videosToVideoDetailsSegue, sender: videosCollectionView)
     }
 }
+
+//MARK:- UIColor Extension - Hex
 
 extension UIColor {
     public convenience init?(hex: String) {

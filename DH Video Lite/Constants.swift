@@ -9,8 +9,12 @@ import Foundation
 
 struct K {
     static let videosCollectionViewCellIdentifier = "ReuseableVideosCollectionViewCell"
-    static let videoDetailsTableViewCellIdentifier = "ReuseableVideoDetailsTableViewCell"
+    static let videoDetailsHeaderTableViewCellIdentifier = "ReuseableVideoDetailsHeaderTableViewCell"
+    static let videoDetailsContextTableViewCellIdentifier = "ReuseableVideoDetailsContextTableViewCell"
     
     static let videosCollectionViewCellNibName = "VideosCollectionViewCell"
-    static let videoDetailsCellNibName = "VideoDetailsTableViewCell"
+    static let videoDetailsHeaderTableViewCellNibName = "VideoDetailsHeaderTableViewCell"
+    static let videoDetailsContextTableViewCellNibName = "VideoDetailsContextTableViewCell"
+    
+    static let videosToVideoDetailsSegue = "videosToVideoDetails"
 }
