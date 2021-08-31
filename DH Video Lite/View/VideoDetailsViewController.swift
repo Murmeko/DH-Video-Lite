@@ -6,17 +6,71 @@
 //
 
 import UIKit
+import MurkyVideoPlayer
 
 class VideoDetailsViewController: UIViewController {
     
-    @IBOutlet weak var videoDetailsPlayerView: UIView!
-    @IBOutlet weak var videoDetailsTableView: UITableView!
+    @IBOutlet weak var videoDetailsView: UIView!
+    
+    let videoDetailsPlayerView = UIView()
+    let videoDetailsTableView = UITableView()
+    var tableViewConstraints: [NSLayoutConstraint]?
     
     var videoDetailsViewModel: VideoDetailsViewModel?
+    var videoPlayer: MVP?
+    let dhColor = UIColor(red: 235/255, green: 150/255, blue: 90/255, alpha: 1)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if UIApplication.shared.statusBarOrientation.isPortrait {
+            self.navigationController?.navigationBar.isHidden = false
+        } else {
+            self.navigationController?.navigationBar.isHidden = true
+        }
+        updateFrame()
+        configureVideoPlayer()
         configureTableView()
+        videoDetailsView.addSubview(videoPlayer!)
+        videoDetailsView.addSubview(videoDetailsTableView)
+        setupTableViewConstraints()
+        videoPlayer?.playerReady()
+        title = videoDetailsViewModel?.title
+        navigationController?.navigationBar.backItem?.title = ""
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : dhColor]
+        navigationController?.navigationBar.tintColor = dhColor
+    }
+    
+    func updateFrame() {
+        videoDetailsView.frame = view.frame
+    }
+}
+
+extension VideoDetailsViewController {
+    
+    func configureVideoPlayer() {
+        videoPlayer = MVP.init(width: view.frame.width, height: view.frame.height)
+        videoPlayer?.setQualityNames(firstName: "FHD",
+                                     secondName: "HD",
+                                     thirdName: "SD",
+                                     fourthName: "MP3")
+        videoPlayer?.setQualityURLs(firstURL: URL(string: videoDetailsViewModel!.fhdUrl),
+                                    secondURL: URL(string: videoDetailsViewModel!.hdUrl),
+                                    thirdURL: URL(string: videoDetailsViewModel!.sdUrl),
+                                    fourthURL: URL(string: videoDetailsViewModel!.mp3Url))
+        videoPlayer?.preferredQuality(quality: .firstQuality)
+        videoPlayer?.setSliderColor(miniumTrackTintColor: dhColor, thumbColor: dhColor, maximumTrackTintColor: UIColor.gray)
+    }
+    
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        coordinator.animate(alongsideTransition: { context in
+            self.updateFrame()
+            self.videoPlayer?.deviceRotated()
+            if UIApplication.shared.statusBarOrientation.isPortrait {
+                self.navigationController?.navigationBar.isHidden = false
+            } else {
+                self.navigationController?.navigationBar.isHidden = true
+            }
+        })
     }
 }
 
@@ -26,6 +80,14 @@ extension VideoDetailsViewController: UITableViewDelegate, UITableViewDataSource
         videoDetailsTableView.delegate = self
         videoDetailsTableView.dataSource = self
         videoDetailsTableView.register(UINib(nibName: K.videoDetailsHeaderTableViewCellNibName, bundle: nil), forCellReuseIdentifier: K.videoDetailsHeaderTableViewCellIdentifier)
+    }
+    
+    func setupTableViewConstraints() {
+        videoDetailsTableView.translatesAutoresizingMaskIntoConstraints = false
+        videoDetailsTableView.topAnchor.constraint(equalTo: videoPlayer!.bottomAnchor).isActive = true
+        videoDetailsTableView.leftAnchor.constraint(equalTo: videoDetailsView.leftAnchor).isActive = true
+        videoDetailsTableView.rightAnchor.constraint(equalTo: videoDetailsView.rightAnchor).isActive = true
+        videoDetailsTableView.bottomAnchor.constraint(equalTo: videoDetailsView.bottomAnchor).isActive = true
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

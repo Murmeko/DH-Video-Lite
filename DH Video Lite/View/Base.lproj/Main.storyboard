@@ -47,34 +47,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1mU-r5-d3P">
-                                <rect key="frame" x="0.0" y="44" width="375" height="200"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="7QG-9s-Tkz"/>
-                                </constraints>
-                            </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gEw-79-onP">
-                                <rect key="frame" x="0.0" y="244" width="375" height="423"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uOX-9G-9js">
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </tableView>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="VK9-ZS-vs2"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="gEw-79-onP" firstAttribute="leading" secondItem="VK9-ZS-vs2" secondAttribute="leading" id="IYK-79-NS9"/>
-                            <constraint firstAttribute="trailing" secondItem="1mU-r5-d3P" secondAttribute="trailing" id="KMd-7W-mcU"/>
-                            <constraint firstItem="1mU-r5-d3P" firstAttribute="top" secondItem="VK9-ZS-vs2" secondAttribute="top" id="Mwk-49-izR"/>
-                            <constraint firstItem="gEw-79-onP" firstAttribute="top" secondItem="1mU-r5-d3P" secondAttribute="bottom" id="Pcu-Bk-kCa"/>
-                            <constraint firstItem="VK9-ZS-vs2" firstAttribute="bottom" secondItem="gEw-79-onP" secondAttribute="bottom" id="axg-sb-vvl"/>
-                            <constraint firstItem="1mU-r5-d3P" firstAttribute="leading" secondItem="VK9-ZS-vs2" secondAttribute="leading" id="mZh-GU-2Wl"/>
-                            <constraint firstItem="VK9-ZS-vs2" firstAttribute="trailing" secondItem="gEw-79-onP" secondAttribute="trailing" id="yMe-Fr-Sd8"/>
+                            <constraint firstItem="VK9-ZS-vs2" firstAttribute="trailing" secondItem="uOX-9G-9js" secondAttribute="trailing" id="aiz-dS-wsL"/>
+                            <constraint firstItem="VK9-ZS-vs2" firstAttribute="bottom" secondItem="uOX-9G-9js" secondAttribute="bottom" id="dVH-H7-WlZ"/>
+                            <constraint firstItem="uOX-9G-9js" firstAttribute="top" secondItem="VK9-ZS-vs2" secondAttribute="top" id="dzm-dq-Jdj"/>
+                            <constraint firstItem="uOX-9G-9js" firstAttribute="leading" secondItem="VK9-ZS-vs2" secondAttribute="leading" id="xGx-Ot-YOy"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="MY0-I0-Phw"/>
                     <connections>
-                        <outlet property="videoDetailsPlayerView" destination="1mU-r5-d3P" id="gzA-C0-TEh"/>
-                        <outlet property="videoDetailsTableView" destination="gEw-79-onP" id="Lk8-Tt-JjS"/>
+                        <outlet property="videoDetailsView" destination="uOX-9G-9js" id="Y76-ep-aFX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rv4-Fd-B6n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
