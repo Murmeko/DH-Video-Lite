@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9mX-jQ-myA">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Videos Collection View Controller-->
+        <scene sceneID="dIj-1a-0sR">
+            <objects>
+                <collectionViewController id="cth-ng-xpd" customClass="VideosCollectionViewController" customModule="DH_Video_Lite" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="DqR-dP-Z6M">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="URU-Ue-Xr1">
+                            <size key="itemSize" width="128" height="128"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells/>
+                        <connections>
+                            <outlet property="dataSource" destination="cth-ng-xpd" id="2tU-aQ-PHL"/>
+                            <outlet property="delegate" destination="cth-ng-xpd" id="kIS-MS-j4R"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="1VA-1h-qwE"/>
+                    <connections>
+                        <outlet property="videosCollectionView" destination="DqR-dP-Z6M" id="bad-yn-K1J"/>
+                        <segue destination="kHG-VE-HR9" kind="show" identifier="videosToVideoDetails" id="6zW-cM-VkE"/>
+                    </connections>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uNF-Qc-X1S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="512" y="124"/>
+        </scene>
+        <!--Video Details View Controller-->
+        <scene sceneID="BkU-se-A2B">
+            <objects>
+                <viewController id="kHG-VE-HR9" customClass="VideoDetailsViewController" customModule="DH_Video_Lite" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QDv-O0-n8d">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uOX-9G-9js">
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="VK9-ZS-vs2"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="VK9-ZS-vs2" firstAttribute="trailing" secondItem="uOX-9G-9js" secondAttribute="trailing" id="aiz-dS-wsL"/>
+                            <constraint firstItem="VK9-ZS-vs2" firstAttribute="bottom" secondItem="uOX-9G-9js" secondAttribute="bottom" id="dVH-H7-WlZ"/>
+                            <constraint firstItem="uOX-9G-9js" firstAttribute="top" secondItem="VK9-ZS-vs2" secondAttribute="top" id="dzm-dq-Jdj"/>
+                            <constraint firstItem="uOX-9G-9js" firstAttribute="leading" secondItem="VK9-ZS-vs2" secondAttribute="leading" id="xGx-Ot-YOy"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="MY0-I0-Phw"/>
+                    <connections>
+                        <outlet property="videoDetailsView" destination="uOX-9G-9js" id="Y76-ep-aFX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rv4-Fd-B6n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1387.6923076923076" y="123.69668246445497"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="zKc-Jc-eYL">
+            <objects>
+                <navigationController id="9mX-jQ-myA" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="f1a-Zz-hYn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="cth-ng-xpd" kind="relationship" relationship="rootViewController" id="Nv0-ox-4hg"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J3k-Ws-h5M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-384" y="124"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
