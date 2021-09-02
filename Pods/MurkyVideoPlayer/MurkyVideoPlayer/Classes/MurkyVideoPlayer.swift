@@ -682,66 +682,72 @@ extension MVP {
     func updatePlayerFrames(_ playerFrame: CGRect) {
         frame = playerFrame
         playerControlsContainerView.frame = frame
+        
         playerLayer?.frame = playerControlsContainerView.frame
         playerGradientLayer.frame = playerControlsContainerView.frame
     }
     
     func setupPlayerConstraints() {
         self.playerConstraints = [
+            playerControlsContainerView.topAnchor.constraint(equalTo: playerControlsContainerView.topAnchor),
+            playerControlsContainerView.leftAnchor.constraint(equalTo: playerControlsContainerView.leftAnchor),
+            playerControlsContainerView.rightAnchor.constraint(equalTo: playerControlsContainerView.rightAnchor),
+            playerControlsContainerView.bottomAnchor.constraint(equalTo: playerControlsContainerView.bottomAnchor),
+            
             playerControlsContainerButton.topAnchor.constraint(equalTo: playerControlsContainerView.topAnchor),
             playerControlsContainerButton.leftAnchor.constraint(equalTo: playerControlsContainerView.leftAnchor),
             playerControlsContainerButton.rightAnchor.constraint(equalTo: playerControlsContainerView.rightAnchor),
             playerControlsContainerButton.bottomAnchor.constraint(equalTo: playerControlsContainerView.bottomAnchor),
             
-            playerActivityIndicatorView.centerXAnchor.constraint(equalTo: playerControlsContainerView.centerXAnchor),
-            playerActivityIndicatorView.centerYAnchor.constraint(equalTo: playerControlsContainerView.centerYAnchor),
+            playerActivityIndicatorView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
+            playerActivityIndicatorView.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
             
-            playerDownloadButton.topAnchor.constraint(equalTo: playerControlsContainerView.topAnchor, constant: +10),
-            playerDownloadButton.leftAnchor.constraint(equalTo: playerControlsContainerView.leftAnchor, constant: +10),
+            playerDownloadButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: +10),
+            playerDownloadButton.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: +10),
             playerDownloadButton.heightAnchor.constraint(equalToConstant: 25),
             playerDownloadButton.widthAnchor.constraint(equalToConstant: 25),
             
-            playerDownloadProgressView.topAnchor.constraint(equalTo: playerControlsContainerView.topAnchor, constant: +20),
+            playerDownloadProgressView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: +20),
             playerDownloadProgressView.leftAnchor.constraint(equalTo: playerDownloadButton.rightAnchor, constant: +10),
             playerDownloadProgressView.widthAnchor.constraint(equalToConstant: 75),
             
-            playerQualityStackView.topAnchor.constraint(equalTo: playerControlsContainerView.topAnchor, constant: +5),
-            playerQualityStackView.rightAnchor.constraint(equalTo: playerControlsContainerView.rightAnchor, constant: -5),
+            playerQualityStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: +5),
+            playerQualityStackView.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -5),
             playerQualityStackView.heightAnchor.constraint(equalToConstant: 26.5),
-         
-            playerPlayPauseButton.centerXAnchor.constraint(equalTo: playerControlsContainerView.centerXAnchor),
-            playerPlayPauseButton.centerYAnchor.constraint(equalTo: playerControlsContainerView.centerYAnchor),
+            
+            playerPlayPauseButton.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
+            playerPlayPauseButton.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
             playerPlayPauseButton.widthAnchor.constraint(equalToConstant: 50),
             playerPlayPauseButton.heightAnchor.constraint(equalToConstant: 50),
-         
+            
             playerForwardButton.leftAnchor.constraint(equalTo: playerPlayPauseButton.rightAnchor, constant: +30),
-            playerForwardButton.centerYAnchor.constraint(equalTo: playerControlsContainerView.centerYAnchor),
+            playerForwardButton.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
             playerForwardButton.widthAnchor.constraint(equalToConstant: 40),
             playerForwardButton.heightAnchor.constraint(equalToConstant: 40),
-         
+            
             PlayerBackwardButton.rightAnchor.constraint(equalTo: playerPlayPauseButton.leftAnchor, constant: -30),
-            PlayerBackwardButton.centerYAnchor.constraint(equalTo: playerControlsContainerView.centerYAnchor),
+            PlayerBackwardButton.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
             PlayerBackwardButton.widthAnchor.constraint(equalToConstant: 40),
             PlayerBackwardButton.heightAnchor.constraint(equalToConstant: 40),
-         
-            playerCurrentTimeLabel.leftAnchor.constraint(equalTo: playerControlsContainerView.leftAnchor),
-            playerCurrentTimeLabel.bottomAnchor.constraint(equalTo: playerControlsContainerView.bottomAnchor),
+            
+            playerCurrentTimeLabel.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor),
+            playerCurrentTimeLabel.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
             playerCurrentTimeLabel.widthAnchor.constraint(equalToConstant: 60),
             playerCurrentTimeLabel.heightAnchor.constraint(equalToConstant: 30),
-         
+            
             playerDurationLabel.rightAnchor.constraint(equalTo: playerFullscreenButton.leftAnchor),
-            playerDurationLabel.bottomAnchor.constraint(equalTo: playerControlsContainerView.bottomAnchor),
+            playerDurationLabel.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
             playerDurationLabel.widthAnchor.constraint(equalToConstant: 60),
             playerDurationLabel.heightAnchor.constraint(equalToConstant: 30),
             
-            playerFullscreenButton.rightAnchor.constraint(equalTo: playerControlsContainerView.rightAnchor, constant: -5),
-            playerFullscreenButton.bottomAnchor.constraint(equalTo: playerControlsContainerView.bottomAnchor, constant: -5),
+            playerFullscreenButton.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -5),
+            playerFullscreenButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -5),
             playerFullscreenButton.widthAnchor.constraint(equalToConstant: 30),
             playerFullscreenButton.heightAnchor.constraint(equalToConstant: 20),
-         
+            
             playerSlider.rightAnchor.constraint(equalTo: playerDurationLabel.leftAnchor),
             playerSlider.leftAnchor.constraint(equalTo: playerCurrentTimeLabel.rightAnchor),
-            playerSlider.bottomAnchor.constraint(equalTo: playerControlsContainerView.bottomAnchor),
+            playerSlider.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
             playerSlider.heightAnchor.constraint(equalToConstant: 30)
         ]
     }
@@ -790,7 +796,6 @@ extension MVP {
             self.downloadTask = downloadTask
             self.isDownloading = true
             self.downloadCancelled = false
-            print("Download started.")
             let config = UIImage.SymbolConfiguration.init(pointSize: 25, weight: UIImage.SymbolWeight.regular)
             let image = UIImage(named: "pause.circle", in: nil, with: config)
             DispatchQueue.main.async {
@@ -807,7 +812,6 @@ extension MVP {
                 guard let resumeData = resumeDataOrNil else {
                     self.isDownloading = false
                     self.downloadCancelled = true
-                    print("Download cannot be resumed.")
                     let config = UIImage.SymbolConfiguration.init(pointSize: 25, weight: UIImage.SymbolWeight.regular)
                     let image = UIImage(named: "arrow.down.circle", in: nil, with: config)
                     DispatchQueue.main.async {
@@ -819,7 +823,6 @@ extension MVP {
                 }
                 self.isDownloading = false
                 self.downloadCancelled = true
-                print("Download paused.")
                 self.resumeData = resumeData
                 let config = UIImage.SymbolConfiguration.init(pointSize: 25, weight: UIImage.SymbolWeight.regular)
                 let image = UIImage(named: "arrow.down.circle", in: nil, with: config)
@@ -838,7 +841,6 @@ extension MVP {
         self.downloadTask = downloadTask
         self.isDownloading = true
         self.downloadCancelled = false
-        print("Download resumed.")
         let config = UIImage.SymbolConfiguration.init(pointSize: 25, weight: UIImage.SymbolWeight.regular)
         let image = UIImage(named: "pause.circle", in: nil, with: config)
         DispatchQueue.main.async {
@@ -849,7 +851,7 @@ extension MVP {
     }
     
     public func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
-         if downloadTask == self.downloadTask {
+        if downloadTask == self.downloadTask {
             let calculatedProgress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
             DispatchQueue.main.async {
                 self.playerDownloadProgressView.progress = calculatedProgress
@@ -860,12 +862,10 @@ extension MVP {
     public func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         self.isDownloading = false
         self.downloadCancelled = false
-        print("Download complete.")
         let documentsURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
         let savedURL = documentsURL.appendingPathComponent(secondUrl!.lastPathComponent)
         try! FileManager.default.moveItem(at: location, to: savedURL)
         UISaveVideoAtPathToSavedPhotosAlbum(savedURL.relativePath, nil, nil, nil)
-        print("Video saved.")
         DispatchQueue.main.async {
             UIApplication.shared.keyWindow?.rootViewController?.presentedViewController?.present(self.playerAlert, animated: true, completion: nil)
         }
@@ -881,7 +881,6 @@ extension MVP {
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         self.isDownloading = false
         self.downloadCancelled = true
-        print("Download failed.")
         if let safeError = error {
             let userInfo = (safeError as NSError).userInfo
             if let resumeData = userInfo[NSURLSessionDownloadTaskResumeData] as? Data {
@@ -896,5 +895,4 @@ extension MVP {
             self.playerDownloadProgressView.isHidden = true
         }
     }
-    
 }

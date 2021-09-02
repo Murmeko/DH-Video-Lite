@@ -10,8 +10,7 @@ import MurkyVideoPlayer
 
 class VideoDetailsViewController: UIViewController {
     
-    @IBOutlet weak var videoDetailsView: UIView!
-    
+    let videoDetailsView = UIView()
     let videoDetailsPlayerView = UIView()
     let videoDetailsTableView = UITableView()
     var tableViewConstraints: [NSLayoutConstraint]?
@@ -22,11 +21,16 @@ class VideoDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(videoDetailsView)
+        
         if UIApplication.shared.statusBarOrientation.isPortrait {
             self.navigationController?.navigationBar.isHidden = false
+            videoDetailsView.frame = CGRect(x: 0, y: (navigationController?.navigationBar.frame.height)!+(UIApplication.shared.keyWindow?.safeAreaInsets.top)!, width: view.frame.width, height: view.frame.height)
         } else {
             self.navigationController?.navigationBar.isHidden = true
+            videoDetailsView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
         }
+        
         updateFrame()
         configureVideoPlayer()
         configureTableView()
@@ -44,8 +48,12 @@ class VideoDetailsViewController: UIViewController {
         videoPlayer?.player?.pause()
     }
     
+    override var prefersHomeIndicatorAutoHidden: Bool {
+        return true
+    }
+    
     func updateFrame() {
-        videoDetailsView.frame = videoDetailsView.frame
+        videoDetailsPlayerView.frame = view.frame
     }
 }
 
@@ -70,9 +78,14 @@ extension VideoDetailsViewController {
             self.updateFrame()
             self.videoPlayer?.deviceRotated()
             if UIApplication.shared.statusBarOrientation.isPortrait {
+                self.view.backgroundColor = .white
                 self.navigationController?.navigationBar.isHidden = false
+                let playerPortraitYPos = (self.navigationController?.navigationBar.frame.height)!+(UIApplication.shared.keyWindow?.safeAreaInsets.top)!
+                self.videoDetailsView.frame = CGRect(x: 0, y: playerPortraitYPos, width: self.view.frame.width, height: self.view.frame.height)
             } else {
+                self.view.backgroundColor = .black
                 self.navigationController?.navigationBar.isHidden = true
+                self.videoDetailsView.frame = self.view.frame
             }
         })
     }

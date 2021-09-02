@@ -50,6 +50,7 @@ class VideosCollectionViewCell: UICollectionViewCell {
                 self.videosStackView.alpha = 1.0
             }
         } else {
+            
             videosDurationLabel.backgroundColor = .gray
             videosTitleLabelContainerView.backgroundColor = .gray
             videosContainerView.backgroundColor = .gray
