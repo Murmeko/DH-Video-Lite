@@ -5,7 +5,7 @@ PODS:
     - Moya/Core (= 14.0.0)
   - Moya/Core (14.0.0):
     - Alamofire (~> 5.0)
-  - MurkyVideoPlayer (0.2.0)
+  - MurkyVideoPlayer (0.4.0)
 
 DEPENDENCIES:
   - Kingfisher (~> 6.0)
@@ -24,14 +24,14 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   MurkyVideoPlayer:
-    :commit: 24335e109818ce445573ea1068dd9910ce50f92f
+    :commit: 5635327da966569fd0ccb0f6c99b1b7042d466ba
     :git: https://github.com/Murmeko/MurkyVideoPlayer.git
 
 SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
   Kingfisher: 016c8b653a35add51dd34a3aba36b580041acc74
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
-  MurkyVideoPlayer: 0ca307f61a86621e9d230eebb48a6493d3a6439e
+  MurkyVideoPlayer: 461539df77c601182d3cac109f3717ee0627b2e0
 
 PODFILE CHECKSUM: d954d3572441ad3056c268836d4ab44c0f158329
 

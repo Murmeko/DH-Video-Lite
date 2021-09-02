@@ -46,25 +46,10 @@
                     <view key="view" contentMode="scaleToFill" id="QDv-O0-n8d">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uOX-9G-9js">
-                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="VK9-ZS-vs2"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="VK9-ZS-vs2" firstAttribute="trailing" secondItem="uOX-9G-9js" secondAttribute="trailing" id="aiz-dS-wsL"/>
-                            <constraint firstItem="VK9-ZS-vs2" firstAttribute="bottom" secondItem="uOX-9G-9js" secondAttribute="bottom" id="dVH-H7-WlZ"/>
-                            <constraint firstItem="uOX-9G-9js" firstAttribute="top" secondItem="VK9-ZS-vs2" secondAttribute="top" id="dzm-dq-Jdj"/>
-                            <constraint firstItem="uOX-9G-9js" firstAttribute="leading" secondItem="VK9-ZS-vs2" secondAttribute="leading" id="xGx-Ot-YOy"/>
-                        </constraints>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <navigationItem key="navigationItem" id="MY0-I0-Phw"/>
-                    <connections>
-                        <outlet property="videoDetailsView" destination="uOX-9G-9js" id="Y76-ep-aFX"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rv4-Fd-B6n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

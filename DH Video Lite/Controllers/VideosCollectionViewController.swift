@@ -68,9 +68,11 @@ class VideosCollectionViewController: UICollectionViewController, UICollectionVi
         
         if isLoadingCell(for: indexPath) {
             cell.configure(with: .none)
+            cell.isUserInteractionEnabled = false
         } else {
             let videoViewModel = videosViewModel.getVideoViewModel(indexPath)
             cell.configure(with: videoViewModel)
+            cell.isUserInteractionEnabled = true
         }
         return cell
     }
