@@ -15,6 +15,7 @@
 		1B38290626DD4B4A00E84EA4 /* VideosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B38290426DD4B4A00E84EA4 /* VideosCollectionViewCell.swift */; };
 		1B38290726DD4B4B00E84EA4 /* VideosCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B38290526DD4B4A00E84EA4 /* VideosCollectionViewCell.xib */; };
 		1B38290926DD4B6100E84EA4 /* VideosCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B38290826DD4B6100E84EA4 /* VideosCollectionViewController.swift */; };
+		1B9DC22226E097EB005839D4 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9DC22126E097EB005839D4 /* UIColor+Extensions.swift */; };
 		1BA04E9C26DDF77600F542A8 /* VideoDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA04E9B26DDF77600F542A8 /* VideoDetailsViewController.swift */; };
 		1BA04E9E26DDFA6C00F542A8 /* VideoDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA04E9D26DDFA6C00F542A8 /* VideoDetailsViewModel.swift */; };
 		1BD15E9126CAC36F002F0145 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD15E9026CAC36F002F0145 /* AppDelegate.swift */; };
@@ -36,6 +37,7 @@
 		1B38290426DD4B4A00E84EA4 /* VideosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosCollectionViewCell.swift; sourceTree = "<group>"; };
 		1B38290526DD4B4A00E84EA4 /* VideosCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideosCollectionViewCell.xib; sourceTree = "<group>"; };
 		1B38290826DD4B6100E84EA4 /* VideosCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosCollectionViewController.swift; sourceTree = "<group>"; };
+		1B9DC22126E097EB005839D4 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		1BA04E9B26DDF77600F542A8 /* VideoDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailsViewController.swift; sourceTree = "<group>"; };
 		1BA04E9D26DDFA6C00F542A8 /* VideoDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailsViewModel.swift; sourceTree = "<group>"; };
 		1BD15E8D26CAC36F002F0145 /* DH Video Lite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DH Video Lite.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,8 +78,6 @@
 		1B35721926CACB9E00E0FF69 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				1B38290826DD4B6100E84EA4 /* VideosCollectionViewController.swift */,
-				1BA04E9B26DDF77600F542A8 /* VideoDetailsViewController.swift */,
 				1BD15E9626CAC36F002F0145 /* Main.storyboard */,
 				1BCE3FB926DC9C8700556371 /* Cells */,
 			);
@@ -92,13 +92,48 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		1B35722326CACDD700E0FF69 /* Network */ = {
+		1B35722326CACDD700E0FF69 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				1B35721A26CACBA400E0FF69 /* Model */,
 				1B35722426CACDF600E0FF69 /* DHVideosAPI.swift */,
 				1B35722626CACE0D00E0FF69 /* NetworkManager.swift */,
 			);
-			path = Network;
+			name = Networking;
+			path = "Networkşng";
+			sourceTree = "<group>";
+		};
+		1B9DC22026E097C3005839D4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1B9DC22126E097EB005839D4 /* UIColor+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1B9DC22326E09829005839D4 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				1B35722826CACE3300E0FF69 /* Constants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		1B9DC22426E09890005839D4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1BD15E9926CAC370002F0145 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		1B9DC22526E09936005839D4 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1B38290826DD4B6100E84EA4 /* VideosCollectionViewController.swift */,
+				1BA04E9B26DDF77600F542A8 /* VideoDetailsViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		1BCE3FB926DC9C8700556371 /* Cells */ = {
@@ -136,13 +171,14 @@
 				1BD15E9226CAC36F002F0145 /* SceneDelegate.swift */,
 				1BD15E9026CAC36F002F0145 /* AppDelegate.swift */,
 				1BD15E9B26CAC370002F0145 /* LaunchScreen.storyboard */,
-				1B35721A26CACBA400E0FF69 /* Model */,
+				1BD15E9E26CAC370002F0145 /* Info.plist */,
+				1B9DC22326E09829005839D4 /* Constants */,
+				1B9DC22526E09936005839D4 /* Controllers */,
+				1B9DC22026E097C3005839D4 /* Extensions */,
+				1B35722326CACDD700E0FF69 /* Networking */,
+				1B9DC22426E09890005839D4 /* Resources */,
 				1B35721926CACB9E00E0FF69 /* View */,
 				1B35721826CACB9400E0FF69 /* ViewModel */,
-				1B35722326CACDD700E0FF69 /* Network */,
-				1B35722826CACE3300E0FF69 /* Constants.swift */,
-				1BD15E9926CAC370002F0145 /* Assets.xcassets */,
-				1BD15E9E26CAC370002F0145 /* Info.plist */,
 			);
 			path = "DH Video Lite";
 			sourceTree = "<group>";
@@ -283,6 +319,7 @@
 				1B35722526CACDF600E0FF69 /* DHVideosAPI.swift in Sources */,
 				1B38290926DD4B6100E84EA4 /* VideosCollectionViewController.swift in Sources */,
 				1BD15E9126CAC36F002F0145 /* AppDelegate.swift in Sources */,
+				1B9DC22226E097EB005839D4 /* UIColor+Extensions.swift in Sources */,
 				1B35722226CACDAC00E0FF69 /* VideosViewModel.swift in Sources */,
 				1B35722726CACE0D00E0FF69 /* NetworkManager.swift in Sources */,
 				1BA04E9E26DDFA6C00F542A8 /* VideoDetailsViewModel.swift in Sources */,

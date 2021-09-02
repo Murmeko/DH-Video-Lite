@@ -20,7 +20,21 @@ class VideoDetailsHeaderTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+    }
+    
+    func configure(with viewModel: VideoDetailsViewModel) {
         videoDetailsHeaderCategoryLabelContainer.layer.masksToBounds = true
         videoDetailsHeaderCategoryLabelContainer.layer.cornerRadius = 5
+        
+        videoDetailsHeaderTitleContainer.backgroundColor = UIColor(hex: "\(viewModel.titleBackgroundColor)ff")
+        videoDetailsHeaderTitleLabel.textColor = UIColor(hex: "\(viewModel.titleTextColor)ff")
+        videoDetailsHeaderTitleLabel.text = viewModel.title
+        videoDetailsHeaderCategoryLabel.text = viewModel.videoCategory
+        videoDetailsHeaderDateOfCreationLabel.textColor = UIColor(hex: "\(viewModel.titleTextColor)ff")
+        videoDetailsHeaderDateOfCreationLabel.text = viewModel.videoDateOfCreation
+        videoDetailsHeaderTimesReadLabel.text = "\(viewModel.timesRead)"
+        videoDetailsHeaderCurrentReadersCountLabel.text = "\(viewModel.currentReaderCount)"
+        videoDetailsHeaderCommentCountLabel.text = "\(viewModel.commentCount)"
+        videoDetailsHeaderShortContentLabel.text = viewModel.shortContent
     }
 }

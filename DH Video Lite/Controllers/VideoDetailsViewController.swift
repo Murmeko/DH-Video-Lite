@@ -18,7 +18,7 @@ class VideoDetailsViewController: UIViewController {
     
     var videoDetailsViewModel: VideoDetailsViewModel?
     var videoPlayer: MVP?
-    let dhColor = UIColor(red: 235/255, green: 150/255, blue: 90/255, alpha: 1)
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,8 +36,8 @@ class VideoDetailsViewController: UIViewController {
         videoPlayer?.playerReady()
         title = videoDetailsViewModel?.title
         navigationController?.navigationBar.backItem?.title = ""
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : dhColor]
-        navigationController?.navigationBar.tintColor = dhColor
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : K.dhColor]
+        navigationController?.navigationBar.tintColor = K.dhColor
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -45,7 +45,7 @@ class VideoDetailsViewController: UIViewController {
     }
     
     func updateFrame() {
-        videoDetailsView.frame = view.frame
+        videoDetailsView.frame = videoDetailsView.frame
     }
 }
 
@@ -62,7 +62,7 @@ extension VideoDetailsViewController {
                                     thirdURL: URL(string: videoDetailsViewModel!.sdUrl),
                                     fourthURL: URL(string: videoDetailsViewModel!.mp3Url))
         videoPlayer?.preferredQuality(quality: .firstQuality)
-        videoPlayer?.setSliderColor(miniumTrackTintColor: dhColor, thumbColor: dhColor, maximumTrackTintColor: UIColor.gray)
+        videoPlayer?.setSliderColor(miniumTrackTintColor: K.dhColor, thumbColor: K.dhColor, maximumTrackTintColor: UIColor.gray)
     }
     
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -100,16 +100,7 @@ extension VideoDetailsViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = videoDetailsTableView.dequeueReusableCell(withIdentifier: K.videoDetailsHeaderTableViewCellIdentifier, for: indexPath) as! VideoDetailsHeaderTableViewCell
-        cell.videoDetailsHeaderTitleContainer.backgroundColor = UIColor(hex: "\(videoDetailsViewModel!.titleBackgroundColor)ff")
-        cell.videoDetailsHeaderTitleLabel.textColor = UIColor(hex: "\(videoDetailsViewModel!.titleTextColor)ff")
-        cell.videoDetailsHeaderTitleLabel.text = videoDetailsViewModel!.title
-        cell.videoDetailsHeaderCategoryLabel.text = videoDetailsViewModel!.videoCategory
-        cell.videoDetailsHeaderDateOfCreationLabel.textColor = UIColor(hex: "\(videoDetailsViewModel!.titleTextColor)ff")
-        cell.videoDetailsHeaderDateOfCreationLabel.text = videoDetailsViewModel!.videoDateOfCreation
-        cell.videoDetailsHeaderTimesReadLabel.text = "\(videoDetailsViewModel!.timesRead)"
-        cell.videoDetailsHeaderCurrentReadersCountLabel.text = "\(videoDetailsViewModel!.currentReaderCount)"
-        cell.videoDetailsHeaderCommentCountLabel.text = "\(videoDetailsViewModel!.commentCount)"
-        cell.videoDetailsHeaderShortContentLabel.text = videoDetailsViewModel!.shortContent
+        cell.configure(with: videoDetailsViewModel!)
         return cell
     }
 }

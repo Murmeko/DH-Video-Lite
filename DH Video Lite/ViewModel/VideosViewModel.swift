@@ -7,64 +7,66 @@
 
 import UIKit
 
+protocol VideosViewModelDelegate: AnyObject {
+    func onFetchCompleted(with newIndexPathsToReload: [IndexPath]?)
+    func onFetchFailed(with reason: String)
+}
+
 class VideosViewModel {
-    var videosList: [NewestDatum] = []
-    var videoImages: [UIImage] = []
-    var videoImageUrls: [URL] = []
+    private weak var delegate: VideosViewModelDelegate?
     
-    var NM = NetworkManager()
+    private var videosList: [NewestDatum] = []
+    private var newVideos: [NewestDatum] = []
     
-    var reloadData: (()->())?
+    private var NM = NetworkManager()
+    private var pageIndex = 0
+    private var pageSize = 20
+    private var fetchInProgress = false
     
-    init() {
-        getVideos(pageIndex: 0, pageSize: 20)
+    var numberOfVideos: Int {
+        return videosList.count
+    }
+    
+    init(delegate: VideosViewModelDelegate) {
+        self.delegate = delegate
     }
 }
 
 extension VideosViewModel {
-    func getVideos(pageIndex: Int, pageSize: Int) {
+    func getVideos() {
+        guard fetchInProgress == false else {
+            return
+        }
+        fetchInProgress = true
+        
         NM.fetchVideos(pageIndex, pageSize) { videosData, videosError in
-            if let safeData = videosData {
-                let videosGroup = DispatchGroup()
-                let videoDetails = safeData.data?.newest?.data
+            self.fetchInProgress = false
+            
+            if let safeData = videosData?.data?.newest?.data {
+                self.pageIndex += 1
+                self.newVideos = safeData
+                self.videosList.append(contentsOf: safeData)
+                if self.pageIndex > 0 {
+                  let indexPathsToReload = self.calculateIndexPathsToReload(from: safeData)
+                  self.delegate?.onFetchCompleted(with: indexPathsToReload)
+                } else {
+                  self.delegate?.onFetchCompleted(with: .none)
+                }
                 
-                for videoDetail in videoDetails! {
-                    videosGroup.enter()
-                    self.videosList.append(videoDetail)
-                    let url = URL(string: (videoDetail.imageUrl?.value)!)!
-                    self.videoImageUrls.append(url)
-                    videosGroup.leave()
-                }
-                videosGroup.notify(queue: .main) {
-                    self.getVideoImages(self.videoImageUrls)
-                }
             } else {
                 print(videosError?.localizedDescription as Any)
             }
         }
     }
     
-    func getVideoImages(_ videoImageUrls: [URL]) {
-        NM.fetchVideoImages(imageUrls: videoImageUrls) { imagesData, imagesError in
-            if let safeData = imagesData {
-                for image in safeData {
-                    self.videoImages.append(image)
-                    
-                }
-                self.reloadData!()
-            } else {
-                print(imagesError?.localizedDescription as Any)
-            }
-        }
-    }
-    
-    func numberOfVideos() -> Int {
-        return videosList.count
-    }
-    
     func getVideoViewModel(_ indexPath: IndexPath) -> VideoDetailsViewModel {
-        let videoDetails = videosList[indexPath.row]
-        return VideoDetailsViewModel(videoImage: videoImages[indexPath.row], videoDetails: videoDetails)
+        return VideoDetailsViewModel(videoDetails: videosList[indexPath.row])
+    }
+    
+    private func calculateIndexPathsToReload(from newVideos: [NewestDatum]) -> [IndexPath] {
+        let startIndex = videosList.count - pageSize
+        let endIndex = startIndex + pageSize
+        return (startIndex..<endIndex).map { IndexPath(row: $0, section: 0) }
     }
 }
 

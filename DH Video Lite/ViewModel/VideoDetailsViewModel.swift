@@ -8,7 +8,6 @@
 import UIKit
 
 struct VideoDetailsViewModel {
-    var videoImage: UIImage
     var videoDetails: NewestDatum
 }
 
@@ -25,8 +24,8 @@ extension VideoDetailsViewModel {
     var fhdUrl: String {
         return self.videoDetails.videos![5].value!
     }
-    var image: UIImage {
-        return self.videoImage
+    var imageUrl: String {
+        return (self.videoDetails.imageUrl?.value)!
     }
     var title: String {
         return self.videoDetails.title!
